@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  
+<section>
+    <div class="card">
+        <h1 style="text-align:center">Login Now</h1>
+<form class="signup" method="post">
+    {% csrf_token %}
+    {{forms}}
+    <input type="submit" value="Login">
+    <p class="css">Not a member <a  href="{% url 'blog:sign_up' %}">Signup now</a></p>
+</form>
+</div>
+</section>
+{% endblock %}

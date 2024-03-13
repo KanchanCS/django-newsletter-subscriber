@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="img">
+<div class="card">
+    <h1 style="text-align:center">Register Now</h1>
+    <form class="signup" method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="SignUp">
+            <p class="css">Already have an account? <a href="{% url 'blog:login' %}" color: hotpink;>login</a>.</p>
+    </form>
+</div>
+</section>
+{% endblock %}
