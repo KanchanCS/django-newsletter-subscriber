@@ -130,7 +130,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 Email_HOST_USER = 'imkanchan7422@gmail.com'
 try:
-    EMAIL_HOST_PASSWORD = 'cxqlebfkukephiyq'
+    EMAIL_HOST_PASSWORD = None
 except NameError:
     print("define email.EMAIL_HOST_PASSWORD attribute_error")
 EMAIL_USE_TLS = True
