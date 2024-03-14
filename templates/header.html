@@ -31,7 +31,7 @@
             >Home</a
           >
         </li>
-        {% if user.is_authenticated %}
+
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -40,14 +40,7 @@
             >Add Blog</a
           >
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'blog:logout' %}"
-            >Logout</a
-          >
-        </li>
+
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -56,25 +49,6 @@
             >Contect</a
           >
         </li>
-        {% else %}
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'blog:sign_up' %}"
-            >Sign up</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'blog:login' %}"
-            >Login</a
-          >
-        </li>
-
-        {% endif %}
       </ul>
     </div>
   </div>

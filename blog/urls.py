@@ -10,9 +10,7 @@ urlpatterns = [
     path("details/<int:id>/", views.blog_details, name="blog_details"),
     path("edit/<int:id>/", views.edit_blog, name="edit_blog"),
     path("delete/<int:id>/", views.delete_blog, name="delete_blog"),
-    path("register/", views.sign_up, name="sign_up"),
-    path("logout", views.Logout, name="logout"),
-    path("login", views.Login, name="login"),
+   
     path("mail_letter", views.mail_letter, name="mail_letter"),
     
 ]
