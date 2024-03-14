@@ -13,7 +13,6 @@ urlpatterns = [
     path("register/", views.sign_up, name="sign_up"),
     path("logout", views.Logout, name="logout"),
     path("login", views.Login, name="login"),
-    # path("Subscribe", views.blog_details, name="Subscribe"),
-    
+    path("mail_letter", views.mail_letter, name="mail_letter"),
     
 ]

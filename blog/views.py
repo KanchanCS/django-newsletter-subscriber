@@ -1,9 +1,18 @@
+
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import LoginForm, PostForm, RegisterForm, SubscribeForm
-from .models import Post, Subscription
+from .forms import (
+    LoginForm,
+    MailMessageForm,
+    PostForm,
+    RegisterForm,
+    SubscribeForm,
+)
+from .models import Post
 
 
 # Create your views here.
@@ -16,19 +25,19 @@ def index(request):
 
 
 def blog_details(request, id):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            post = get_object_or_404(Post, pk=id)
-            form = SubscribeForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('/')
-        else:
-            form = SubscribeForm()   
-            context = {"post": post,"form":form}
-        return render(request, 'details.html', context)
+    
+    post = get_object_or_404(Post, pk=id)       
+    if request.method == "POST":
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Subscription Successful")
+            return redirect('/')
     else:
-        return redirect('blog:login')
+        form = SubscribeForm()   
+    context = {"post": post,"form":form}
+    return render(request, 'details.html', context)
+    
     
 def delete_blog(request, id):
     if request.method == 'POST':
@@ -106,4 +115,25 @@ def Logout(request):
     logout(request)
     return redirect("blog:index")   
 
-
+def mail_letter(request):
+    if request.method == 'POST':
+        form = MailMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            title = form.cleaned_data.get('title')
+            message = form.cleaned_data.get('message')
+            send_mail(
+            title,
+            message,
+            'imkanchan7422@gmail.com',
+            ["erkanchan016@gmail.com"],
+            fail_silently=False,
+            )
+            messages.success(request, 'Message has been sent to Mail List')
+            return redirect('blog:mail_letter')
+    else:
+        form = MailMessageForm()        
+    context = {
+        'form':form
+    }
+    return render(request, 'mail_letter.html',context)  

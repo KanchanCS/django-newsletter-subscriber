@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Post, Subscription
+from .models import Post, Subscription, MailMessage
 
 
 class PostForm(forms.ModelForm):
@@ -42,3 +42,8 @@ class SubscribeForm(forms.ModelForm):
         fields = [
             "email"
         ]
+        
+class MailMessageForm(forms.ModelForm):
+    class Meta:
+        model = MailMessage
+        fields = '__all__'       
